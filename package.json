@@ -9,16 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@readr-media/react-image": "^2.2.1",
+    "@readr-media/share-button": "^1.0.3",
+    "@types/react-gtm-module": "^2.0.3",
+    "babel-plugin-inline-react-svg": "^2.0.2",
+    "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "react-gtm-module": "^2.0.11",
+    "styled-components": "^6.1.1"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "typescript": "^5"
   }
 }
