@@ -20,29 +20,27 @@ switch (env) {
     protocol = 'https';
     protocol = 'https';
     host = 'dev.mnews.tw';
-    cmsApiUrl = `https://mirror-cms-dev-ufaummkd5q-de.a.run.app/api/graphql`;
+    staticFileDestination = `${protocol}://${host}/projects/election2024`;
 
     break;
   case 'staging':
     protocol = 'https';
     GTM_ID = 'GTM-NFH6FDH';
     host = 'staging.mnews.tw';
-    cmsApiUrl = `${protocol}://${host}/api/graphql`;
+    staticFileDestination = `${protocol}://${host}/projects/election2024`;
     break;
 
   case 'prod': {
     protocol = 'https';
     GTM_ID = 'GTM-PK7VRFX';
     host = 'www.mnews.tw';
-    cmsApiUrl = `https://mirror-cms-dev-ufaummkd5q-de.a.run.app/api/graphql`;
+    staticFileDestination = `${protocol}://${host}/projects/dev-election2024`;
     break;
   }
   default: {
-    staticFileDestination = `${protocol}://${host}:3000`;
-    cmsApiUrl = `https://mirror-cms-dev-ufaummkd5q-de.a.run.app/api/graphql`;
     imagePrefix = '';
     GTM_ID = 'GTM-TVZ26W8';
-
+    staticFileDestination = `${protocol}://${host}:3000`;
     break;
   }
 }

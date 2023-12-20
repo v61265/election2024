@@ -1,32 +1,20 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
   swcMinify: true,
-  // images: {
-  //   loader: 'default',
-  // },
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './loader.ts',
   },
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true,
   },
-
   exportPathMap: async function () {
     return {
       '/': { page: '/' },
     };
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-
-    return config;
   },
 };
 
