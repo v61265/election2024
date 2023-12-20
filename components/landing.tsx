@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { zIndex, color, breakpoint } from '~/styles/theme';
+import { color, breakpoint } from '~/styles/theme';
 
 const LandingWrapper = styled.section`
   width: fit-content:

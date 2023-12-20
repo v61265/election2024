@@ -5,6 +5,8 @@ import Header from '~/components/layout/header';
 import Footer from '~/components/layout/footer';
 import LatestNewsList from '~/components/latest-news/latest-news-list';
 import Landing from '~/components/landing';
+import { useState } from 'react';
+import Board from '~/components/board';
 
 const Main = styled.main`
   border: 4px solid #000;
@@ -25,7 +27,8 @@ export default function Home() {
       <Main>
         <Header />
         <Landing />
-        {/* <Landing />
+        <Board />
+        {/* 
         <Selector />
   <ResultBoard />*/}
         {/* <LatestNewsList /> */}
