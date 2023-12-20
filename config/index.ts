@@ -13,25 +13,33 @@ let staticFileDestination: string;
 let imagePrefix: string;
 let GTM_ID = '';
 let SITE_URL = '';
+let cmsApiUrl = '';
 
 switch (env) {
   case 'dev':
     protocol = 'https';
-    GTM_ID = 'GTM-TVZ26W8';
+    protocol = 'https';
+    host = 'dev.mnews.tw';
+    cmsApiUrl = `https://mirror-cms-dev-ufaummkd5q-de.a.run.app/api/graphql`;
 
     break;
   case 'staging':
     protocol = 'https';
     GTM_ID = 'GTM-NFH6FDH';
+    host = 'staging.mnews.tw';
+    cmsApiUrl = `${protocol}://${host}/api/graphql`;
     break;
 
   case 'prod': {
     protocol = 'https';
     GTM_ID = 'GTM-PK7VRFX';
+    host = 'www.mnews.tw';
+    cmsApiUrl = `https://mirror-cms-dev-ufaummkd5q-de.a.run.app/api/graphql`;
     break;
   }
   default: {
     staticFileDestination = `${protocol}://${host}:3000`;
+    cmsApiUrl = `https://mirror-cms-dev-ufaummkd5q-de.a.run.app/api/graphql`;
     imagePrefix = '';
     GTM_ID = 'GTM-TVZ26W8';
 
@@ -39,4 +47,11 @@ switch (env) {
   }
 }
 
-export { staticFileDestination, imagePrefix, GTM_ID, SITE_URL, JSON_URL };
+export {
+  staticFileDestination,
+  imagePrefix,
+  GTM_ID,
+  SITE_URL,
+  JSON_URL,
+  cmsApiUrl,
+};

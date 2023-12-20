@@ -12,13 +12,13 @@ const FooterTop = styled.section`
   align-items: center;
   ${breakpoint.md} {
     padding: 32px 0;
-    padding-left: calc((100vw - 286px / 2);
-    padding-right: calc((100vw - 286px / 2);
+    padding-left: calc((100vw - 286px) / 2);
+    padding-right: calc((100vw - 286px) / 2);
   }
   ${breakpoint.xl} {
     padding: 22px 0 30px 0;
-    padding-left: calc((100vw - 1120px / 2);
-    padding-right: calc((100vw - 1120px / 2);
+    padding-left: calc((100vw - 1120px) / 2);
+    padding-right: calc((100vw - 1120px) / 2);
     flex-direction: row;
     align-items: center;
     position: relative;
@@ -35,9 +35,9 @@ const TopLeft = styled.div`
 `;
 
 const Logo = styled(Image)`
-  border: 4px solid red;
+  display: none;
   ${breakpoint.md} {
-    display: none;
+    display: block;
   }
 `;
 
@@ -68,9 +68,6 @@ const InfoWrapper = styled.ul`
 const InfoItem = styled.li`
   display: flex;
   justify-content: center;
-
-    justify-content: inherit;
-  }
 `;
 
 const TopRight = styled.div`
@@ -112,30 +109,30 @@ const MobileIcons = styled.nav`
   justify-content: center;
   align-items: center;
   margin-top: 4px;
-  a {
-    padding: 14px 8px;
-  }
-  @include media-breakpoint-up(xl) {
+  ${breakpoint.md} {
     margin-top: 8px;
   }
-  @include media-breakpoint-up(xl) {
+  ${breakpoint.xl} {
     display: none;
+  }
+  a {
+    padding: 14px 8px;
   }
 `;
 
 const FooterBottom = styled.section`
-padding: 20px 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-${breakpoint.md} {
-  padding: 32px 0;
-  padding-left: calc((100vw - 286px / 2);
-  padding-right: calc((100vw - 286px / 2);
-}
-${breakpoint.xl} {
   padding: 20px 0;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  ${breakpoint.md} {
+    padding: 32px 0;
+    padding-left: calc((100vw - 286px) / 2);
+    padding-right: calc((100vw - 286px) / 2);
+  }
+  ${breakpoint.xl} {
+    padding: 20px 0;
+  }
 `;
 
 const Copyright = styled.p`
@@ -165,37 +162,47 @@ const YoutubeTos = styled.p`
   margin: 0 0 12px;
   a {
     color: ${color.blue};
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
 const SocialLink = styled(Link)`
   display: block;
-  width: 22px;
-  height: 22px;
   position: relative;
 `;
 
 export default function Header(): JSX.Element {
-  const FOOTER_LEFT_LIST: { href: string; type: string; imgSrc: string }[] = [
+  const FOOTER_LEFT_LIST: {
+    href: string;
+    type: string;
+    imgSrc: string;
+    size: number;
+  }[] = [
     {
       href: 'https://www.facebook.com/mnewstw',
       imgSrc: 'facebook-logo.svg',
       type: 'facebook',
+      size: 20,
     },
     {
       href: 'https://lin.ee/4XsO8xi',
       imgSrc: 'line-logo.png',
       type: 'line',
+      size: 22,
     },
     {
       href: 'https://www.instagram.com/mnewstw',
       imgSrc: 'instagram-logo.svg',
       type: 'instagram',
+      size: 20,
     },
     {
       href: 'https://twitter.com/mnews_tw',
       imgSrc: 'twitter-logo.svg',
       type: 'twitter',
+      size: 22,
     },
   ];
   const FOOTER_RIGHT_LIST: { href: string; text: string }[] = [
@@ -238,8 +245,8 @@ export default function Header(): JSX.Element {
                     src={'/' + social.imgSrc}
                     className='social-network-service-img'
                     alt={social.type}
-                    width='22'
-                    height='22'
+                    width={social.size}
+                    height={social.size}
                   />
                 </SocialLink>
               );
@@ -253,7 +260,7 @@ export default function Header(): JSX.Element {
               <span>(02)7752-5678</span>
             </InfoItem>
             <InfoItem>
-              <span>客服信箱</span>
+              <span>客服信箱 </span>
               <a href='mailto:mnews.cs@mnews.com.tw'>mnews.cs@mnews.com.tw</a>
             </InfoItem>
           </InfoWrapper>
@@ -285,15 +292,15 @@ export default function Header(): JSX.Element {
                   className='social-network-service-img'
                   src={'/' + social.imgSrc}
                   alt={social.type}
-                  width='22'
-                  height='22'
+                  width={social.size}
+                  height={social.size}
                 />
               </SocialLink>
             );
           })}
         </MobileIcons>
       </FooterTop>
-      {/* <FooterBottom>
+      <FooterBottom>
         <Copyright>
           <span>©Mirror TV BROADCASTING LTD.</span>
           <span>All Rights Reserved.</span>
@@ -325,37 +332,7 @@ export default function Header(): JSX.Element {
             Google 隱私權與條款
           </Link>
         </YoutubeTos>
-      </FooterBottom> */}
+      </FooterBottom>
     </footer>
   );
 }
-
-/* <style lang="scss" scoped>
-
-
-.social-network-services-nav,
-.top-wrapper__mobile-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  a {
-    padding: 14px 8px;
-  }
-}
-
-.social-network-service-img,
-.top-wrapper__mobile-icons {
-  &[alt='facebook'],
-  &[alt='instagram'] {
-    height: 20px;
-  }
-  &[alt='twitter'],
-  &[alt='line'] {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-
-
-</style> */

@@ -3,6 +3,8 @@ import { styled } from 'styled-components';
 // import { Inter } from 'next/font/google';
 import Header from '~/components/layout/header';
 import Footer from '~/components/layout/footer';
+import LatestNewsList from '~/components/latest-news/latest-news-list';
+import Landing from '~/components/landing';
 
 const Main = styled.main`
   border: 4px solid #000;
@@ -22,6 +24,11 @@ export default function Home() {
       </Head>
       <Main>
         <Header />
+        <Landing />
+        {/* <Landing />
+        <Selector />
+  <ResultBoard />*/}
+        {/* <LatestNewsList /> */}
         <Footer />
       </Main>
     </>

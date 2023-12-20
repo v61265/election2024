@@ -6,13 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "export": "next build && next export"
+    "lint": "next lint"
   },
   "dependencies": {
     "@readr-media/react-image": "^2.2.1",
     "@readr-media/share-button": "^1.0.3",
     "@types/react-gtm-module": "^2.0.3",
+    "axios": "^1.6.2",
     "babel-plugin-inline-react-svg": "^2.0.2",
     "next": "14.0.4",
     "react": "^18",
