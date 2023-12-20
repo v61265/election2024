@@ -26,6 +26,7 @@ const color = {
   text: {
     normal: '#004DBC',
   },
+  blue: '#036',
   black: '#000000',
   white: '#ffffff',
 };

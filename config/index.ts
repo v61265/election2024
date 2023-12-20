@@ -1,7 +1,6 @@
 // 這裡管理的是在 Build 階段就會寫死數值的環境變數。
 // .env.local 中的變數，僅能在 sever-side 階段取用。但以 `NEXT_PUBLIC_` 開頭命名者，可在 client-side 階段取用。
 const env: string = String(process.env.NEXT_PUBLIC_ENV);
-const projectName: string = String(process.env.NEXT_PUBLIC_PROJECT_NAME);
 
 // JSON 設定
 const JSON_URL: string =

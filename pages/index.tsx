@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { styled } from 'styled-components';
 // import { Inter } from 'next/font/google';
 import Header from '~/components/layout/header';
+import Footer from '~/components/layout/footer';
 
 const Main = styled.main`
   border: 4px solid #000;
@@ -21,6 +22,7 @@ export default function Home() {
       </Head>
       <Main>
         <Header />
+        <Footer />
       </Main>
     </>
   );
