@@ -13,7 +13,7 @@ const subTypeMapping: { title: string; name: SubType }[] = [
   { title: '不分區立委', name: 'party' },
 ];
 
-type Districts =
+type District =
   | 'taipeiCity'
   | 'newTaipeiCity'
   | 'taoyuanCity'
@@ -35,9 +35,10 @@ type Districts =
   | 'penghuCounty'
   | 'kinmenCounty'
   | 'lienchiangCounty'
-  | 'chiayiCity';
+  | 'chiayiCity'
+  | '';
 
-const districtsMapping: { title: string; name: string }[] = [
+const districtsMapping: { title: string; name: District }[] = [
   { title: '臺北市', name: 'taipeiCity' },
   { title: '新北市', name: 'newTaipeiCity' },
   { title: '桃園市', name: 'taoyuanCity' },
@@ -63,4 +64,4 @@ const districtsMapping: { title: string; name: string }[] = [
 ];
 
 export { subTypeMapping, districtsMapping };
-export type { SubType, Districts };
+export type { SubType, District };
