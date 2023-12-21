@@ -14,7 +14,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const SubTypeItem = styled.button<{ isActive: boolean }>`
+const SubTypeItemWrapper = styled.div``;
+
+const SubTypeItem = styled.button<{ active: boolean }>`
   color: #000;
   font-size: 16px;
   font-weight: 500;
@@ -27,23 +29,37 @@ const SubTypeItem = styled.button<{ isActive: boolean }>`
     font-size: 18px;
     margin-top: 0;
     padding: 8px 17.5px;
+    margin-left: 12px;
   }
   &:hover {
     background: #73a4ea;
     color: #f4f5f6;
   }
-  & + & {
-    margin-left: 20px;
-    ${breakpoint.md} {
-      margin-left: 12px;
-    }
-  }
-  ${({ isActive }) =>
-    isActive &&
+
+
+  ${({ active }) =>
+    active &&
     `
     color: #fff;
     background: #014DB8;
   `}
+
+  & + & {
+    margin-left: 20px;
+    ${breakpoint.md} {
+      margin-left: 12px
+  }
+  &:first-child {
+    margin: 0;
+  }
+`;
+
+const MobileBr = styled.div`
+  width: 100vw;
+  height: 0;
+  ${breakpoint.md} {
+    display: none;
+  }
 `;
 
 interface SubTypeSelectorProps {
@@ -57,14 +73,16 @@ export default function subTypeSelector({
 }: SubTypeSelectorProps): JSX.Element {
   return (
     <Wrapper>
-      {subTypeMapping.map((item) => (
-        <SubTypeItem
-          key={item.name}
-          onClick={() => setSubType(item.name)}
-          isActive={subType === item.name}
-        >
-          {item.title}
-        </SubTypeItem>
+      {subTypeMapping.map((item, index) => (
+        <SubTypeItemWrapper key={item.name}>
+          <SubTypeItem
+            onClick={() => setSubType(item.name)}
+            active={subType === item.name}
+          >
+            {item.title}
+          </SubTypeItem>
+          {index % 2 !== 0 && <MobileBr key={item.name} />}
+        </SubTypeItemWrapper>
       ))}
     </Wrapper>
   );
