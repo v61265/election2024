@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import { color, breakpoint } from '~/styles/theme';
+import fb from '~/public/facebook-logo.svg';
+import line from '~/public/line-logo.png';
+import whiteLogo from '~/public/logo-white.svg';
+import twitter from '~/public/twitter-logo.svg';
+import ig from '~/public/instagram-logo.svg';
 
 const FooterTop = styled.section`
   background-color: ${color.blue};
@@ -182,25 +187,25 @@ export default function Header(): JSX.Element {
   }[] = [
     {
       href: 'https://www.facebook.com/mnewstw',
-      imgSrc: 'facebook-logo.svg',
+      imgSrc: fb,
       type: 'facebook',
       size: 20,
     },
     {
       href: 'https://lin.ee/4XsO8xi',
-      imgSrc: 'line-logo.png',
+      imgSrc: line,
       type: 'line',
       size: 22,
     },
     {
       href: 'https://www.instagram.com/mnewstw',
-      imgSrc: 'instagram-logo.svg',
+      imgSrc: ig,
       type: 'instagram',
       size: 20,
     },
     {
       href: 'https://twitter.com/mnews_tw',
-      imgSrc: 'twitter-logo.svg',
+      imgSrc: twitter,
       type: 'twitter',
       size: 22,
     },
@@ -226,7 +231,7 @@ export default function Header(): JSX.Element {
       <FooterTop>
         <TopLeft>
           <Logo
-            src='/logo-white.svg'
+            src={whiteLogo}
             className='logo'
             alt='MNews'
             width='150'
@@ -242,7 +247,7 @@ export default function Header(): JSX.Element {
                   rel='noreferrer noopener'
                 >
                   <Image
-                    src={'/' + social.imgSrc}
+                    src={social.imgSrc}
                     className='social-network-service-img'
                     alt={social.type}
                     width={social.size}
@@ -290,7 +295,7 @@ export default function Header(): JSX.Element {
               >
                 <Image
                   className='social-network-service-img'
-                  src={'/' + social.imgSrc}
+                  src={social.imgSrc}
                   alt={social.type}
                   width={social.size}
                   height={social.size}

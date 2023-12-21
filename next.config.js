@@ -8,7 +8,7 @@ switch (process.env.NEXT_PUBLIC_ENV) {
     assetPrefixPath = `https://dev.mnews.tw/projects/dev-election2024`;
     break;
   default:
-    assetPrefixPath = 'http://localhost:3000';
+    assetPrefixPath = '.';
     break;
 }
 

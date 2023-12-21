@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { zIndex, color, breakpoint } from '~/styles/theme';
 import { ShareButton } from '@readr-media/share-button';
+import logo from '~/public/logo.svg';
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -54,7 +55,7 @@ export default function Header(): JSX.Element {
         rel='noopener noreferrer nofollow'
         className='logo'
       >
-        <Image src='/logo.svg' fill={true} alt='鏡電視' />
+        <Image src={logo} fill={true} alt='鏡電視' />
       </Link>
       <Aside>
         <ShareButton />
