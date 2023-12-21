@@ -160,6 +160,14 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@readr-media/react-election-widgets@^1.1.1-alpha.9":
+  version "1.1.1-alpha.9"
+  resolved "https://registry.yarnpkg.com/@readr-media/react-election-widgets/-/react-election-widgets-1.1.1-alpha.9.tgz#8a3debc89f3c2ee3dfc0a707317759e7617b0a74"
+  integrity sha512-AULyD4TBq3UtkV0kH2/ZEr7xXlrC089M27M+F2NhDYm8wQGSVci2ick6TnBUki02dBRCvW87VngbvG+U3914mw==
+  dependencies:
+    "@twreporter/errors" "^1.1.1"
+    axios "^0.27.2"
+
 "@readr-media/react-image@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@readr-media/react-image/-/react-image-2.2.1.tgz#137736c06b12e1107209ed2f23437cafd47be315"
@@ -181,6 +189,13 @@
   integrity sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==
   dependencies:
     tslib "^2.4.0"
+
+"@twreporter/errors@^1.1.1":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@twreporter/errors/-/errors-1.1.2.tgz#533e3d14411fe0ac7836c4301a74a3556158ce12"
+  integrity sha512-arIe0H1CdBY9PSzCUTf66oxoBgYcPJRfjohdFBN+CCE8xbJZ1j4A5y1NgR0ZtRvhdNzHOskfjPLA2bU5ZgSxYQ==
+  dependencies:
+    lodash.get "4"
 
 "@types/json5@^0.0.29":
   version "0.0.29"
@@ -429,6 +444,14 @@ axe-core@=4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.7.0.tgz#34ba5a48a8b564f67e103f0aa5768d76e15bbbbf"
   integrity sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==
+
+axios@^0.27.2:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
+  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+  dependencies:
+    follow-redirects "^1.14.9"
+    form-data "^4.0.0"
 
 axios@^1.6.2:
   version "1.6.2"
@@ -1018,7 +1041,7 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.9.tgz#7eb4c67ca1ba34232ca9d2d93e9886e611ad7daf"
   integrity sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==
 
-follow-redirects@^1.15.0:
+follow-redirects@^1.14.9, follow-redirects@^1.15.0:
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.3.tgz#fe2f3ef2690afce7e82ed0b44db08165b207123a"
   integrity sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==
@@ -1518,6 +1541,11 @@ locate-path@^6.0.0:
   integrity sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
   dependencies:
     p-locate "^5.0.0"
+
+lodash.get@4:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
 
 lodash.merge@^4.6.2:
   version "4.6.2"

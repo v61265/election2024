@@ -52,4 +52,5 @@ export {
   SITE_URL,
   JSON_URL,
   cmsApiUrl,
+  env,
 };

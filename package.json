@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@readr-media/react-election-widgets": "^1.1.1-alpha.9",
     "@readr-media/react-image": "^2.2.1",
     "@readr-media/share-button": "^1.0.3",
     "@types/react-gtm-module": "^2.0.3",
