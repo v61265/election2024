@@ -22,7 +22,7 @@ const theme = {
 const color = {
   background: '#F6F6F8',
   primary: '#014DB8',
-  secondary: ' #73A4EA;',
+  secondary: '#73A4EA;',
   text: {
     normal: '#004DBC',
   },

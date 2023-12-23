@@ -9,13 +9,21 @@ import ew from '@readr-media/react-election-widgets';
 const DataLoader = ew.VotesComparison.DataLoader;
 const EVCComponent = ew.VotesComparison.ReactComponent;
 const gcsBaseUrl =
-  env === 'dev'
-    ? 'https://whoareyou-gcs.readr.tw/elections-dev'
-    : 'https://whoareyou-gcs.readr.tw/elections';
+  env === 'prod'
+    ? 'https://whoareyou-gcs.readr.tw/elections'
+    : 'https://whoareyou-gcs.readr.tw/elections-dev';
+
 import DistrictSelector from './district-selector';
 
 const Wrapper = styled.section`
   background: ${color.background};
+`;
+
+const EVCWrapper = styled.div`
+  margin-top: 20px;
+  ${breakpoint.md} {
+    margin-top: 44px;
+  }
 `;
 
 export default function Board(): JSX.Element {
@@ -28,19 +36,7 @@ export default function Board(): JSX.Element {
     let resData, loader;
     switch (subType) {
       case 'mountainIndigenous':
-        loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
-        resData = await loader.loadMountainIndigenousLegislatorData({
-          year: yearKey,
-        });
-        setData(resData);
-        break;
       case 'plainIndigenous':
-        loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
-        resData = await loader.loadPlainIndigenousLegislatorData({
-          year: yearKey,
-        });
-        setData(resData);
-        break;
       case 'party':
         loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
         resData = await loader.loadLegislatorData({
@@ -48,7 +44,7 @@ export default function Board(): JSX.Element {
           subtype: subType,
           district: 'all',
         });
-        console.log({ resData });
+        setData(resData);
         break;
       default: {
         loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
@@ -71,9 +67,15 @@ export default function Board(): JSX.Element {
       {subType === 'district' && (
         <DistrictSelector district={district} setDistrict={setDistrict} />
       )}
-      {data && (
-        <EVCComponent election={data} theme='mnewsElection2022' device='rwd' />
-      )}
+      <EVCWrapper>
+        {data && (
+          <EVCComponent
+            election={data}
+            theme='mnewsElection2022'
+            device='rwd'
+          />
+        )}
+      </EVCWrapper>
     </Wrapper>
   );
 }

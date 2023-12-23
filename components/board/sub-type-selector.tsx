@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
 const SubTypeItemWrapper = styled.div``;
 
-const SubTypeItem = styled.button<{ active: boolean }>`
+const SubTypeItem = styled.button<{ isactive: string }>`
   color: #000;
   font-size: 16px;
   font-weight: 500;
@@ -37,8 +37,8 @@ const SubTypeItem = styled.button<{ active: boolean }>`
   }
 
 
-  ${({ active }) =>
-    active &&
+  ${({ isactive }) =>
+    isactive === 'true' &&
     `
     color: #fff;
     background: #014DB8;
@@ -77,7 +77,7 @@ export default function subTypeSelector({
         <SubTypeItemWrapper key={item.name}>
           <SubTypeItem
             onClick={() => setSubType(item.name)}
-            active={subType === item.name}
+            isactive={(subType === item.name).toString()}
           >
             {item.title}
           </SubTypeItem>

@@ -4,7 +4,7 @@ import { color, breakpoint } from '~/styles/theme';
 import { districtsMapping, District } from '~/constants';
 
 const SubTypeItem = styled.button<{
-  active: boolean;
+  isactive: string;
   size: 'all' | 'desktop' | 'mobile';
 }>`
   display: block;
@@ -26,8 +26,8 @@ const SubTypeItem = styled.button<{
     background: #73a4ea;
     color: #f4f5f6;
   }
-  ${({ active }) =>
-    active &&
+  ${({ isactive }) =>
+    isactive === 'true' &&
     `
     color: #fff;
     background: #014DB8;
@@ -78,7 +78,7 @@ export default function DistrictItem({
   return (
     <SubTypeItem
       key={item.name}
-      active={isActive}
+      isactive={isActive.toString()}
       size={size}
       onClick={onClick}
     >
