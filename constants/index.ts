@@ -7,7 +7,7 @@ type SubType =
 
 const subTypeMapping: { title: string; name: SubType }[] = [
   { title: '總統', name: 'president' },
-  { title: '立法委員', name: 'district' },
+  { title: '區域立委', name: 'district' },
   { title: '山地原住民立委', name: 'mountainIndigenous' },
   { title: '平地原住民立委', name: 'plainIndigenous' },
   { title: '不分區立委', name: 'party' },

@@ -14,7 +14,29 @@ const Wrapper = styled.div`
   }
 `;
 
-const SubTypeItemWrapper = styled.div``;
+const SubTypeItemWrapper = styled.div`
+  width: calc(50% - 10px);
+  display: flex;
+  justify-content: flex-end;
+  &:nth-child(2n) {
+    margin-left: 20px;
+    justify-content: flex-start;
+  }
+  &:nth-child(5) {
+    justify-content: center;
+  }
+
+  ${breakpoint.md} {
+    display: block;
+    width: fit-content;
+    &:nth-child(2n) {
+      margin-left: 0;
+    }
+    & + & {
+      margin-left: 12px;
+    }
+  }
+`;
 
 const SubTypeItem = styled.button<{ isactive: string }>`
   color: #000;
@@ -25,17 +47,16 @@ const SubTypeItem = styled.button<{ isactive: string }>`
   border: 2px solid #000;
   transition: 0.5s;
   margin-top: 20px;
+  min-width: fit-content;
   ${breakpoint.md} {
     font-size: 18px;
     margin-top: 0;
     padding: 8px 17.5px;
-    margin-left: 12px;
   }
   &:hover {
     background: #73a4ea;
     color: #f4f5f6;
   }
-
 
   ${({ isactive }) =>
     isactive === 'true' &&
@@ -43,15 +64,6 @@ const SubTypeItem = styled.button<{ isactive: string }>`
     color: #fff;
     background: #014DB8;
   `}
-
-  & + & {
-    margin-left: 20px;
-    ${breakpoint.md} {
-      margin-left: 12px
-  }
-  &:first-child {
-    margin: 0;
-  }
 `;
 
 const MobileBr = styled.div`
@@ -81,7 +93,6 @@ export default function subTypeSelector({
           >
             {item.title}
           </SubTypeItem>
-          {index % 2 !== 0 && <MobileBr key={item.name} />}
         </SubTypeItemWrapper>
       ))}
     </Wrapper>
