@@ -132,7 +132,6 @@ export default function DistrictModal({
               key={item.name}
               onClick={() => {
                 handleOnClickItem(item.name);
-                onClose();
               }}
               isActive={district === item.name}
               size='all'
