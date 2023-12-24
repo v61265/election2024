@@ -1,10 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { color, breakpoint } from '~/styles/theme';
 import { districtsMapping, District } from '~/constants';
 
 const SubTypeItem = styled.button<{
-  isactive: string;
   size: 'all' | 'desktop' | 'mobile';
 }>`
   display: block;
@@ -26,14 +25,8 @@ const SubTypeItem = styled.button<{
     background: #73a4ea;
     color: #f4f5f6;
   }
-  ${({ isactive }) =>
-    isactive === 'true' &&
-    `
-    color: #fff;
-    background: #014DB8;
-  `}
 
-  &:not(:nth-child(3n+1)) {
+  &:not(:nth-child(3n + 1)) {
     margin-left: 16px;
     ${breakpoint.md} {
       margin-left: 0;
@@ -60,6 +53,11 @@ const SubTypeItem = styled.button<{
       `;
     }
   }}
+
+  &.isActive {
+    color: #fff;
+    background: #014db8;
+  }
 `;
 
 interface DistrictItemProps {
@@ -78,9 +76,9 @@ export default function DistrictItem({
   return (
     <SubTypeItem
       key={item.name}
-      isactive={isActive.toString()}
       size={size}
       onClick={onClick}
+      className={isActive ? 'isActive' : ''}
     >
       {item.title}
     </SubTypeItem>

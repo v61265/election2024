@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+  Dispatch,
+} from 'react';
 import styled from 'styled-components';
 import { color, breakpoint } from '~/styles/theme';
 import SubTypeSelector from './sub-type-selector';
@@ -20,50 +26,80 @@ const Wrapper = styled.section`
 `;
 
 const EVCWrapper = styled.div`
-  margin-top: 20px;
+  background: ${color.background};
+  padding-top: 20px;
   ${breakpoint.md} {
-    margin-top: 44px;
+    padding-top: 44px;
   }
 `;
 
-export default function Board(): JSX.Element {
+interface BoardProps {
+  updateTime: string;
+  setUpdateTime: Dispatch<SetStateAction<string>>;
+}
+
+export default function Board({
+  updateTime,
+  setUpdateTime,
+}: BoardProps): JSX.Element {
   const [subType, setSubType] = useState<SubType>('president');
   const [district, setDistrict] = useState<District>('');
   const [data, setData] = useState(null);
   const yearKey = 2020;
 
-  const fetchData = useCallback(async (subType: SubType) => {
-    let resData, loader;
-    switch (subType) {
-      case 'mountainIndigenous':
-      case 'plainIndigenous':
-      case 'party':
-        loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
-        resData = await loader.loadLegislatorData({
-          year: yearKey,
-          subtype: subType,
-          district: 'all',
-        });
-        setData(resData);
-        break;
-      default: {
-        loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
-        const data = await loader.loadPresidentData({
-          year: yearKey,
-        });
-        setData(data);
+  const fetchData = useCallback(
+    async (subType: SubType, district: District) => {
+      let resData, loader;
+      switch (subType) {
+        case 'district': {
+          if (!district) break;
+          loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
+          resData = await loader.loadLegislatorData({
+            year: yearKey,
+            subtype: subType,
+            district: district,
+          });
+          break;
+        }
+        case 'mountainIndigenous':
+        case 'plainIndigenous':
+        case 'party':
+          setDistrict('');
+          loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
+          resData = await loader.loadLegislatorData({
+            year: yearKey,
+            subtype: subType,
+            district: 'all',
+          });
+          break;
+        default: {
+          setDistrict('');
+          loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
+          resData = await loader.loadPresidentData({
+            year: yearKey,
+          });
+        }
       }
-    }
-  }, []);
+      setData(resData);
+    },
+    []
+  );
 
   useEffect(() => {
-    setDistrict('');
-    fetchData(subType);
-  }, [subType, fetchData]);
+    fetchData(subType, district);
+  }, [subType, fetchData, district]);
+
+  useEffect(() => {
+    setUpdateTime(data?.updateAt || updateTime);
+  }, [data, setUpdateTime, updateTime]);
+
+  const handleSetSubType = (type: SubType) => {
+    if (type !== subType) setSubType(type);
+  };
 
   return (
     <Wrapper>
-      <SubTypeSelector subType={subType} setSubType={setSubType} />
+      <SubTypeSelector subType={subType} handleSetSubType={handleSetSubType} />
       {subType === 'district' && (
         <DistrictSelector district={district} setDistrict={setDistrict} />
       )}

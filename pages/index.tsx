@@ -6,6 +6,7 @@ import Footer from '~/components/layout/footer';
 import LatestNewsList from '~/components/latest-news/latest-news-list';
 import Landing from '~/components/landing';
 import Board from '~/components/board';
+import { useState } from 'react';
 
 const Main = styled.main`
   border: 4px solid #000;
@@ -13,6 +14,7 @@ const Main = styled.main`
 `;
 
 export default function Home() {
+  const [updateTime, setUpdateTime] = useState('');
   return (
     <>
       <Head>
@@ -26,8 +28,8 @@ export default function Home() {
       </Head>
       <Main>
         <Header />
-        <Landing />
-        <Board />
+        <Landing updateTime={updateTime} />
+        <Board updateTime={updateTime} setUpdateTime={setUpdateTime} />
         <LatestNewsList />
         <Footer />
       </Main>

@@ -130,9 +130,7 @@ export default function DistrictModal({
           {districtsMapping.map((item) => (
             <DistrictItem
               key={item.name}
-              onClick={() => {
-                handleOnClickItem(item.name);
-              }}
+              onClick={() => handleOnClickItem(item.name)}
               isActive={district === item.name}
               size='all'
               item={item}

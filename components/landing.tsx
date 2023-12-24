@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import styled from 'styled-components';
 import { color, breakpoint } from '~/styles/theme';
@@ -52,7 +53,11 @@ const DescItem = styled.span`
   }
 `;
 
-export default function Landing(): JSX.Element {
+export default function Landing({
+  updateTime,
+}: {
+  updateTime: string;
+}): JSX.Element {
   return (
     <LandingWrapper>
       <Title>
@@ -62,7 +67,10 @@ export default function Landing(): JSX.Element {
       </Title>
       <Description>
         <DescItem>資料來源：中央選舉委員會</DescItem>
-        <DescItem>最後更新時間：2022年11月26日 18:00:00</DescItem>
+        <DescItem>
+          最後更新時間：
+          {dayjs(updateTime).format('YYYY年MM月DD日 HH:mm:ss')}
+        </DescItem>
       </Description>
     </LandingWrapper>
   );

@@ -38,7 +38,7 @@ const SubTypeItemWrapper = styled.div`
   }
 `;
 
-const SubTypeItem = styled.button<{ isactive: string }>`
+const SubTypeItem = styled.button`
   color: #000;
   font-size: 16px;
   font-weight: 500;
@@ -58,38 +58,28 @@ const SubTypeItem = styled.button<{ isactive: string }>`
     color: #f4f5f6;
   }
 
-  ${({ isactive }) =>
-    isactive === 'true' &&
-    `
+  &.isActive {
     color: #fff;
-    background: #014DB8;
-  `}
-`;
-
-const MobileBr = styled.div`
-  width: 100vw;
-  height: 0;
-  ${breakpoint.md} {
-    display: none;
+    background: #014db8;
   }
 `;
 
 interface SubTypeSelectorProps {
   subType: SubType;
-  setSubType: (newSubType: SubType) => void;
+  handleSetSubType: (newSubType: SubType) => void;
 }
 
 export default function subTypeSelector({
   subType = 'president',
-  setSubType,
+  handleSetSubType,
 }: SubTypeSelectorProps): JSX.Element {
   return (
     <Wrapper>
       {subTypeMapping.map((item, index) => (
         <SubTypeItemWrapper key={item.name}>
           <SubTypeItem
-            onClick={() => setSubType(item.name)}
-            isactive={(subType === item.name).toString()}
+            onClick={() => handleSetSubType(item.name)}
+            className={subType === item.name ? 'isActive' : ''}
           >
             {item.title}
           </SubTypeItem>

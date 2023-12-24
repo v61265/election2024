@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { breakpoint } from '~/styles/theme';
 import { districtsMapping, District } from '~/constants';
@@ -6,6 +6,7 @@ import Arrow from '~/public/arrow.svg';
 import Image from 'next/image';
 import DistrictItem from './district-item';
 import DistrictModal from './district-modal';
+import useWindowDimensions from '~/hooks/getWindowDimensions';
 
 const Wrapper = styled.div`
   padding-top: 20px;
@@ -58,7 +59,7 @@ const MoreBtn = styled.button`
   }
 `;
 
-const MoreBtnDesktop = styled(MoreBtn)<{ isOpenAll: boolean }>`
+const MoreBtnDesktop = styled(MoreBtn)`
   display: none;
   ${breakpoint.xl} {
     display: flex;
@@ -67,7 +68,11 @@ const MoreBtnDesktop = styled(MoreBtn)<{ isOpenAll: boolean }>`
     img {
       margin-left: 4px;
       transition: 0.5s;
-      transform: ${({ isOpenAll }) => (isOpenAll ? 'rotate(180deg)' : 'none')};
+    }
+    &.opened {
+      img {
+        transform: rotate(180deg);
+      }
     }
   }
 `;
@@ -81,7 +86,9 @@ export default function DistrictSelector({
   district,
   setDistrict,
 }: DistrictSelectorProps): JSX.Element {
+  const { width: windowWidth } = useWindowDimensions();
   const [isOpenAll, setIsOpenAll] = useState<boolean>(false);
+  const isDesktop = useMemo(() => windowWidth >= 1200, [windowWidth]);
   return (
     <Wrapper>
       <SelectorTitle>請選擇縣市</SelectorTitle>
@@ -89,39 +96,41 @@ export default function DistrictSelector({
         {districtsMapping.slice(0, 6)?.map((item) => (
           <DistrictItem
             key={item.name}
-            onClick={() => setDistrict(item.name)}
+            onClick={() => {
+              setDistrict(item.name);
+            }}
             isActive={district === item.name}
             size='all'
             item={item}
           />
         ))}
         {isOpenAll &&
-          districtsMapping
-            .slice(6)
-            .map((item) => (
-              <DistrictItem
-                key={item.name}
-                onClick={() => setDistrict(item.name)}
-                isActive={district === item.name}
-                size='desktop'
-                item={item}
-              />
-            ))}
+          isDesktop &&
+          districtsMapping.slice(6).map((item) => (
+            <DistrictItem
+              key={item.name}
+              onClick={() => {
+                setDistrict(item.name);
+              }}
+              isActive={district === item.name}
+              size='desktop'
+              item={item}
+            />
+          ))}
       </SelectorWrapper>
       <MoreBtn onClick={() => setIsOpenAll(!isOpenAll)}>展開所有縣市</MoreBtn>
       <MoreBtnDesktop
         onClick={() => setIsOpenAll(!isOpenAll)}
-        isOpenAll={isOpenAll}
+        className={isOpenAll ? 'opened' : ''}
       >
         {isOpenAll ? '收合所有縣市' : '展開所有縣市'}
         <Image alt='arrow' src={Arrow} width='20' height='20' />
       </MoreBtnDesktop>
-      {isOpenAll && (
+      {isOpenAll && !isDesktop && (
         <DistrictModal
           district={district}
           setDistrict={setDistrict}
           onClose={() => {
-            console.log('close');
             setIsOpenAll(false);
           }}
         />
