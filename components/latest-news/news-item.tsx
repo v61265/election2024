@@ -19,7 +19,7 @@ const CardWrapper = styled(Link)`
     margin-top: 28px;
     align-items: flex-start;
   }
-  ${breakpoint.md} {
+  ${breakpoint.xl} {
     width: calc((100% - 120px) / 4);
     margin-top: 36px;
   }
