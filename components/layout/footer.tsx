@@ -73,6 +73,9 @@ const InfoWrapper = styled.ul`
 const InfoItem = styled.li`
   display: flex;
   justify-content: center;
+  ${breakpoint.xl} {
+    justify-content: flex-start;
+  }
 `;
 
 const TopRight = styled.div`
