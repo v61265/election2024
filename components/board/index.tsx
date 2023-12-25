@@ -33,6 +33,10 @@ const EVCWrapper = styled.div`
   }
 `;
 
+interface ResData {
+  updateAt?: string;
+}
+
 interface BoardProps {
   updateTime: string;
   setUpdateTime: Dispatch<SetStateAction<string>>;
@@ -44,7 +48,7 @@ export default function Board({
 }: BoardProps): JSX.Element {
   const [subType, setSubType] = useState<SubType>('president');
   const [district, setDistrict] = useState<District>('');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<ResData>({});
   const yearKey = 2020;
 
   const fetchData = useCallback(
@@ -90,7 +94,9 @@ export default function Board({
   }, [subType, fetchData, district]);
 
   useEffect(() => {
-    setUpdateTime(data?.updateAt || updateTime);
+    if (data?.updateAt) {
+      setUpdateTime(data?.updateAt);
+    }
   }, [data, setUpdateTime, updateTime]);
 
   const handleSetSubType = (type: SubType) => {

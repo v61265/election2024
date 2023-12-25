@@ -111,7 +111,7 @@ export default function LatestNewsList(): JSX.Element {
   return (
     <>
       {latestNews && latestNews.length !== 0 && (
-        <Section>
+        <Section className='GTM-news-list'>
           <Wrapper>
             <TitleWrapper>
               <SubTitle>即時新聞</SubTitle>

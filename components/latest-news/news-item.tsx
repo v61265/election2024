@@ -133,6 +133,7 @@ export default function NewsItem({
       target='_blank'
       rel='noreferrer'
       key={latestNewsItem.id}
+      className='GTM-news-item'
     >
       <ImgWrapper>
         <Image
