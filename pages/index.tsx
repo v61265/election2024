@@ -25,6 +25,25 @@ export default function Home() {
         />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
+        <meta
+          property='og:image'
+          content='https://dev.mnews.tw/projects/dev-election2024/hero-image.png'
+        />
+        <script
+          data-n-head='ssr'
+          data-hid='comScore'
+          dangerouslySetInnerHTML={{
+            __html: `
+              var _comscore = _comscore || [];
+              _comscore.push({ c1: "2", c2: "35880649" });
+              (function() {
+                var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+                s.src = "https://sb.scorecardresearch.com/cs/35880649/beacon.js";
+                el.parentNode.insertBefore(s, el);
+              })();
+            `,
+          }}
+        />
       </Head>
       <Main>
         <Header />

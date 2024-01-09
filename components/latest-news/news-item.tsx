@@ -76,6 +76,7 @@ const TextWrapper = styled.div`
     color: #004dbc;
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 14px;
+    margin-top: 2px;
     ${breakpoint.md} {
       margin-top: 8px;
     }

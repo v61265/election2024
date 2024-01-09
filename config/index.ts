@@ -20,6 +20,7 @@ switch (env) {
     protocol = 'https';
     protocol = 'https';
     host = 'dev.mnews.tw';
+    GTM_ID = 'GTM-TVZ26W8';
     staticFileDestination = `${protocol}://${host}/projects/election2024`;
     cmsApiUrl = `${protocol}://${host}/api/graphql`;
     break;

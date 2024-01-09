@@ -34,7 +34,7 @@ const EVCWrapper = styled.div`
 `;
 
 interface ResData {
-  updateAt?: string;
+  updatedAt?: string;
 }
 
 interface BoardProps {
@@ -47,13 +47,14 @@ export default function Board({
   setUpdateTime,
 }: BoardProps): JSX.Element {
   const [subType, setSubType] = useState<SubType>('president');
-  const [district, setDistrict] = useState<District>('');
+  const [district, setDistrict] = useState<District>('taipeiCity');
   const [data, setData] = useState<ResData>({});
-  const yearKey = 2020;
+  const yearKey = 2024;
 
   const fetchData = useCallback(
     async (subType: SubType, district: District) => {
       let resData, loader;
+      console.log('refetch');
       switch (subType) {
         case 'district': {
           if (!district) break;
@@ -68,7 +69,7 @@ export default function Board({
         case 'mountainIndigenous':
         case 'plainIndigenous':
         case 'party':
-          setDistrict('');
+          setDistrict('taipeiCity');
           loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
           resData = await loader.loadLegislatorData({
             year: yearKey,
@@ -77,7 +78,7 @@ export default function Board({
           });
           break;
         default: {
-          setDistrict('');
+          setDistrict('taipeiCity');
           loader = new DataLoader({ version: 'v2', apiUrl: gcsBaseUrl });
           resData = await loader.loadPresidentData({
             year: yearKey,
@@ -90,12 +91,28 @@ export default function Board({
   );
 
   useEffect(() => {
-    fetchData(subType, district);
+    let intervalId: any; // 指定 intervalId 的類型
+
+    const fetchDataWithInterval = () => {
+      fetchData(subType, district);
+    };
+
+    const restartInterval = () => {
+      clearInterval(intervalId!);
+      intervalId = setInterval(fetchDataWithInterval, 180000);
+    };
+
+    fetchDataWithInterval();
+    restartInterval();
+
+    return () => {
+      clearInterval(intervalId!);
+    };
   }, [subType, fetchData, district]);
 
   useEffect(() => {
-    if (data?.updateAt) {
-      setUpdateTime(data?.updateAt);
+    if (data?.updatedAt) {
+      setUpdateTime(data?.updatedAt);
     }
   }, [data, setUpdateTime, updateTime]);
 
